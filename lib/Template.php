@@ -1,29 +1,27 @@
-<?php class Template{
-    //Path to template
+<?php 
+class Template{
     protected $template;
-    // Vars Parsed In
     protected $vars = array();
 
-    //Constructor
-    public function __construct($template){
+    public function __construct($template)
+    {
         $this->template = $template;
     }
-
-    public function __get($key){
-        return $this->vars[$key];
+    public function __get($id)
+    {
+        return $this->vars[$id];
     }
-
-    public function __set($key, $value){
-        $this->vars[$key] = $value;
+    public function __set($id, $value)
+    {
+        $this->vars[$id] = $value;
     }
-
-    public function __toString(){
+    public function __toString()
+    {   
         extract($this->vars);
-        chdir(dirname($this->template));
+        chdir((dirname($this->template)));
         ob_start();
-
         include basename($this->template);
-
         return ob_get_clean();
     }
 }
+?>
