@@ -54,3 +54,18 @@ Download XAMPP, turn on Apache & MySQL
 # Run localhost/ASM-Web
 
 # Manually add job by 'Create Listing'
+
+//////////// FOR AUTHENTICATION ////////////////
+
+# Create 'users' table
+
+Create a 'users' table with attributes:
+
+- id BIGINT
+- user_id BIGINT
+- user_name VARCHAR 100
+- user_type VARCHAR 100
+- password VARCHAR 100
+- date TIMESTAMPS
+
+# Sign up using developed Sign Up functions & Log In respectively

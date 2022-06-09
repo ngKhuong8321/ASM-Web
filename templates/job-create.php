@@ -15,7 +15,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Job Title/label>
+            <label>Job Title</label>
             <input type="text" class="form-control" name="job_title">
         </div>
         <div class="form-group">
