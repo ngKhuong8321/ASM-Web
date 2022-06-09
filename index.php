@@ -1,20 +1,17 @@
-<?php include_once 'config/init.php'; ?>
 <?php
-$job = new Job;
-
-$template = new Template('templates/frontpage.php');
-
-$category =isset($_GET['category']) ? $_GET['category'] : null ;
-
-if($category){
-    $template->jobs = $job->getByCategory($category);
-    $template->title = 'Jobs In ' . $job->getCategory($category)->name;
-} else {
-    $template->title = 'Latest Jobs';
-    $template->jobs = $job->getAllJobs();
-}
-$template->categories = $job->getCategories();
-
-echo $template;
+    include_once 'config/init.php';
+    $job = new Job;
+    $template = new Template('templates/frontpage.php');
+    
+    $skill = isset($_GET['skill']) ? $_GET['skill'] : null;
+    if ($skill) {
+        $template->title = $skill;
+        $template->jobs = $job->getbySkill($skill);
+    } else {
+        $template->title = 'Latest Jobs'; 
+        $template->jobs = $job->getAll();
+    }
+    $template->skills = $job->getSkills();
+    echo $template;
 
 ?>
