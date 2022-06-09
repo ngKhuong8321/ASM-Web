@@ -1,7 +1,7 @@
-<?php include 'inc/header.php'; ?>
+<?php include(dirname(__DIR__)."/templates/inc/header.php"); ?>
 
     <div class="jumbotron">
-      <h1>Find A Job</h1>
+      <!-- <h1>Find A Job</h1>
       <form method="GET" action="index.php">
         <select name="category" class="form-control">
           <option value="0">Choose Category</option>
@@ -11,7 +11,7 @@
         </select>
         <br>
         <input type="submit" class="btn btn-lg btn-success" value="FIND">
-      </form>
+      </form> -->
     </div>
     <h3><?php echo $title;?></h3>
     <?php foreach($jobs as $job): ?>
@@ -26,4 +26,4 @@
     </div>
     <?php endforeach;?>
 
-<?php include 'inc/footer.php'; ?>
+    <?php include(dirname(__DIR__)."/templates/inc/footer.php"); ?>

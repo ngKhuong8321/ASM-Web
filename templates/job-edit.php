@@ -1,11 +1,11 @@
 <?php include 'inc/header.php'; ?>
     <h2 class="page-header">Edit Job Listing <?php echo $job->id;?></h2>
-    <form method="post" action="edit.php?id=<?php echo $job->id;?>">
+    <form method="post" action="edit.php?id=.<?php echo $job->id;?>">
         <div class="form-group">
             <label>Company</label>
-            <input type="text" class="form-control" name="company" value="<?php echo $job->company; ?>">
+            <input type="text" class="form-control" name="company" value="<?php echo $job->company ?>">
         </div>
-        <!-- <div class="form-group"> 
+        <div class="form-group">
             <label>Category</label>
             <select class="form-control" name="category">
                 
@@ -18,9 +18,9 @@
                     <?php endif; ?>
                 <?php endforeach; ?>
             </select>
-        </div>-->
+        </div>
         <div class="form-group">
-            <label>Job Title </label>
+            <label>Job Title/label>
             <input type="text" class="form-control" name="job_title" value="<?php echo $job->job_title; ?>">
         </div>
         <div class="form-group">
@@ -32,16 +32,8 @@
             <input type="text" class="form-control" name="location" value="<?php echo $job->location; ?>">
         </div>
         <div class="form-group">
-            <label>Position</label>
-            <input type="text" class="form-control" name="position" value="<?php echo $job->position; ?>">
-        </div>
-        <div class="form-group">
             <label>Salary</label>
             <input type="text" class="form-control" name="salary" value="<?php echo $job->salary; ?>">
-        </div>
-        <div class="form-group">
-            <label>Skills</label>
-            <input type="text" class="form-control" name="skills" value="<?php echo $job->skills; ?>">
         </div>
         <div class="form-group">
             <label>Contact User</label>

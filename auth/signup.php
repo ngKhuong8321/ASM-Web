@@ -8,14 +8,17 @@ session_start();
     {
         $user_name = $_POST['user_name'];
         $password = $_POST['password'];
+        $user_type = $_POST['user_type'];
 
-        if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+        if(!empty($user_name) && !empty($user_type) && !empty($password) && !is_numeric($user_name))
         {
             //save to database
             $user_id = random_num(20);
-            $query = "insert into users (user_id,user_name,password) values ('$user_id','$user_name','$password')";
+            $query = "insert into users (user_id,user_name,user_type,password) values ('$user_id','$user_name','$user_type','$password')";
+            $query2 = "insert into cv (fullname,dob,about,phone,contact_email,skills,education,experience,candidate_id) values ('$user_name','2022-01-01','Lorem ipsum','+84123456789','contact@email.com','lorem ipsum','lorem ipsum','lorem ipsum','$user_id')";
 
             mysqli_query($con, $query);
+            mysqli_query($con, $query2);
 
             header("Location: login.php");
             die;
@@ -52,6 +55,13 @@ session_start();
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
                                 <input type="text" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                            <label for="user_type" class="text-info">I'm looking for:</label>
+                            <select id="user_type" style="width: 100%" class="text-info" name="user_type">
+                                <option value="candidate">A Job</option>
+                                <option value="employer">An Employee</option>
+                            </select>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Sign Up">

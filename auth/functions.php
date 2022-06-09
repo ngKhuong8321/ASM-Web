@@ -1,5 +1,5 @@
 <?php
-
+if(!function_exists('check_login')){
 function check_login($con)
 {
     if(isset($_SESSION['user_id']))
@@ -37,7 +37,25 @@ function get_user_data($con)
             $user_data = mysqli_fetch_assoc($result);
             return $user_data;
         }
-    }
+    } else;
+}
+
+function get_cv_data($con)
+{
+    if(isset($_SESSION['user_id']))
+    {
+
+        $id = $_SESSION['user_id'];
+        $query = "select * from cv where candidate_id = '$id' limit 1";
+
+        $result = mysqli_query($con,$query);
+        if($result && mysqli_num_rows($result)>0)
+        {
+
+            $user_data = mysqli_fetch_assoc($result);
+            return $user_data;
+        }
+    } else;
 }
 
 function random_num($length)
@@ -56,3 +74,4 @@ function random_num($length)
 
     return $text;
 }
+} else;

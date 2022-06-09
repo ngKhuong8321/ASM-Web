@@ -13,7 +13,7 @@
         
         <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="/joblister/css/styles.css">
     </head>
     <body>
         
@@ -26,12 +26,27 @@
     <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right"> 
-            <li role="presentation"><a href="index.php">Home</a></li>
-            <li role="presentation"><a href="create.php">Create Listing</a></li>
+            <!-- Guest View -->
             <?php if(!$user_data) : ?>
             <li role="presentation"><a href="auth/login.php">Login</a></li>
             <li role="presentation"><a href="auth/signup.php">Sign up</a></li>
+            <!-- Employer View -->
+            <?php elseif($user_data['user_type'] === 'employer') : ?>
+            <li role="presentation"><a href="allcvPage.php">All CVs</a></li> <!-- UNFINISHED -->
+            <li role="presentation"><a href="create.php">Create Listing</a></li>
+            <li role="presentation"><a href="mylistingPage.php">My Listings</a></li> <!-- UNFINISHED -->
+            <li role="presentation"><a href="index.php">Welcome, <?php echo $user_data['user_name']; ?></a></li>
+            <li role="presentation"><a href="auth/logout.php">Log Out</a></li>
+            <!-- Candidate View -->
+            <?php elseif($user_data['user_type'] === 'candidate') : ?>
+            <li role="presentation"><a href="/joblister/index.php">All Listings</a></li>
+            <li role="presentation"><a href="/joblister/candidate/cv.php">My CV</a></li>
+            <li role="presentation"><a href="index.php">Welcome, <?php echo $user_data['user_name']; ?></a></li>
+            <li role="presentation"><a href="/joblister/auth/logout.php">Log Out</a></li>
+            <!-- Admin View -->
             <?php else : ?>
+            <li role="presentation"><a href="index.php">All CVs</a></li> <!-- UNFINISHED -->
+            <li role="presentation"><a href="index.php">All Listings</a></li>
             <li role="presentation"><a href="index.php">Welcome, <?php echo $user_data['user_name']; ?></a></li>
             <li role="presentation"><a href="auth/logout.php">Log Out</a></li>
             <?php endif; ?>
@@ -39,4 +54,4 @@
         </nav>
         <h3 class="text-muted"><?php echo SITE_TITLE; ?></h3>
       </div>
-      <?php displayMessage(); ?>
+      <?php if(function_exists('displayMessage')){displayMessage();}else; ?>

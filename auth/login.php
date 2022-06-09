@@ -26,7 +26,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 
                 if($user_data['password'] === $password){
                     $_SESSION['user_id'] = $user_data['user_id'];
-                    header("Location: ../index.php");
+                    if($user_data['user_type'] === 'candidate' || $user_data['user_type'] === 'admin'){
+                        header("Location: ../index.php");
+                    } else {
+                        header("Location: ../allcvPage.php");
+                    }
                     die;
                 }
             }
