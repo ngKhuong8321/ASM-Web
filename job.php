@@ -1,4 +1,5 @@
 <?php include_once 'config/init.php'; ?>
+
 <?php
 $job = new Job;
 
@@ -8,6 +9,14 @@ if(isset($_POST['del_id'])){
         redirect('index.php', 'Job Deleted', 'success');
     } else {
         redirect('index.php', 'Job Not Deleted', 'error');
+    }
+}
+if(isset($_POST['apply'])){
+    $apply_id = $_POST['apply'];
+    if($job->apply($apply_id, $_SESSION['user_id'])){
+        redirect('index.php', 'Applied successfully', 'success');
+    } else {
+        redirect('index.php', 'Application failed', 'error');
     }
 }
 

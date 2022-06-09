@@ -31,6 +31,7 @@ class Database{
 
     public function query($query){
         $this->stmt = $this->dbh->prepare($query);
+        return $this->stmt;
     }
 
     public function bind($param, $value, $type = null){
@@ -65,6 +66,11 @@ class Database{
     public function single(){
         $this->execute();
         return $this->stmt->fetch(pdo::FETCH_OBJ);
+    }
+
+    public function assoc(){
+        $this->execute();
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 

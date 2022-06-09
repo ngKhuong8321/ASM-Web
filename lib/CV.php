@@ -12,18 +12,21 @@
             $results = $this->db->resultSet();
             return $results;
         }
-        
         // public function getbySkill($skill){
         //     $this->db->query("SELECT * FROM job
         //                     WHERE skills = $skill");
         //     $results = $this->db->resultSet();
         //     return $results;
         // }
-        // public function getCV($id){
-        //     $this->db->query("SELECT * FROM cv WHERE id = $id");
-        //     $results = $this->db->resultSet();
-        //     return $results;
-        // }
+        public function getCV($employer_id){
+            $this->db->query("SELECT cv.*, application.* 
+                            FROM application
+                            INNER JOIN cv
+                            ON cv.candidate_id = application.cv_id
+                            WHERE application.employer_id = $employer_id");
+            $results = $this->db->resultSet();
+            return $results;
+        }
         // public function createCV($data){
         //     $this->db->query("INSERT INTO cv (id, fullname, dob, about, phone_number, email, skills, education, experience) 
         //                     VALUES (:id, :fullname, :dob, :about, :phone_number, :email, :skills, :education, :experience)");
@@ -63,5 +66,15 @@
         //         $this->db->execute();
         //     }
         // }
+        public function decide($decision, $cv_id, $job_id){
+            $this->db->query("UPDATE application 
+                            SET status = $decision
+                            WHERE cv_id = $cv_id AND job_id = $job_id");
+            if ($this->db->execute()){
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 ?>

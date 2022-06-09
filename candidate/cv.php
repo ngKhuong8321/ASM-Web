@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 ?>
 
 <?php include(dirname(__DIR__)."/templates/inc/header.php"); ?>
-    <h2 class="page-header"> My CV <?php echo $cv_data['fullname'];?></h2>
+    <h2 class="page-header"> Edit <?php echo $cv_data['fullname'];?> CV</h2>
     <form method="post">
         <div class="form-group">
             <label>Full Name</label>
@@ -67,19 +67,24 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         </div>
         <div class="form-group">
             <label>Skills</label>
-            <input type="text" class="form-control" name="skills" value="<?php echo $cv_data['skills']; ?>">
+            <textarea name="skills"><?php echo $cv_data['skills']; ?></textarea>
         </div>
         <div class="form-group">
             <label>Education</label>
-            <input type="text" class="form-control" name="education" value="<?php echo $cv_data['education']; ?>">
+            <textarea name="education"><?php echo $cv_data['education']; ?></textarea>
         </div>
         <div class="form-group">
             <label>Experience</label>
-            <input type="text" class="form-control" name="experience" value="<?php echo $cv_data['experience']; ?>">
+            <textarea name="experience"><?php echo $cv_data['experience']; ?></textarea>
         </div>
-        
         <input type="submit" class="btn btn-default" value="Submit" name="submit">
     </form>
+    <script src="/joblister/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('skills');
+        CKEDITOR.replace('education');
+        CKEDITOR.replace('experience');
+    </script>
     
 <?php include dirname(__DIR__)."/templates/inc/footer.php"; ?>
 

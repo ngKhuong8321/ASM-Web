@@ -21,6 +21,28 @@ class Job{
         return $results;
     }
 
+    // Application
+    public function apply($job_id, $cv_id){
+        $this->db->query("SELECT * FROM jobs WHERE id = $job_id");
+        $data = $this->db->assoc();
+        $employer_id = $data['employer_id'];
+        $stmt = $this->db->query("SELECT status FROM application WHERE job_id = $job_id AND cv_id = $cv_id");
+        $result = $this->db->execute();
+        if ($result && $stmt->rowCount() > 0){
+            return false;
+        }else {
+            $this->db->query("INSERT INTO application(cv_id, job_id, employer_id, status)
+                            VALUES ($cv_id, $job_id, $employer_id, 2)");
+            $result = $this->db->execute();
+            if($this->db->execute()){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+
     //Get By Category
 
     public function getByCategory($category){
@@ -33,7 +55,6 @@ class Job{
                     ");
         //ASSIGN Result Set
         $results = $this->db->resultSet();
-
         return $results;
     }
 
